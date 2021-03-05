@@ -4,18 +4,20 @@
 
 Manage functions, completions, bindings, and snippets from the command line. Extend your shell capabilities, change the look of your prompt and create repeatable configurations across different systems effortlessly.
 
-- Zero configuration out of the box. Need to tweak a thing? [You can do that too](#using-your-fish_plugins-file).
 - 100% _pure_-Fish—easy to contribute to or modify.
 - Blazing fast concurrent plugin downloads.
+- Zero configuration out of the box.
 - Oh My Fish! plugin support.
 
-Looking for plugins? Browse [git.io/awsm.fish](https://git.io/awesome.fish) or [search](https://github.com/topics/fish-plugins) [on](https://github.com/topics/fish-package) [GitHub](https://github.com/topics/fish-plugin).
+> #### 💁 [Looking for plugins?](https://git.io/awesome.fish)
 
 ## Installation
 
 ```console
 curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 ```
+
+> #### ⚠️ [Fish ≥ 3.0 required](https://fishshell.com/docs/current/relnotes.html#fish-3-0-0-released-december-28-2018)
 
 > #### 👋 [Upgrading from Fisher 3.x or 2.x?](https://github.com/jorgebucaran/fisher/issues/652)
 
@@ -43,7 +45,7 @@ You can install plugins from a local directory too.
 fisher install ~/path/to/plugin
 ```
 
-> Fisher expands plugins into your Fish configuration directory by default, overwriting existing files. If you wish to change this behavior, set `$fisher_path` to your preferred location and put it in your function path (#640).
+> Fisher expands plugins into your Fish configuration directory by default, overwriting existing files. If you wish to change this behavior, set `$fisher_path` to your preferred location and put it in your function path ([#640](https://github.com/jorgebucaran/fisher/issues/640)).
 
 ### Listing plugins
 
