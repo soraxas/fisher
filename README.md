@@ -1,6 +1,6 @@
 # Fisher
 
-> A plugin manager for [Fish](https://fishshell.com)—the friendly interactive shell.
+> A plugin manager for [Fish](https://fishshell.com)—the friendly interactive shell. [Looking for plugins?](https://git.io/awesome.fish)
 
 Manage functions, completions, bindings, and snippets from the command line. Extend your shell capabilities, change the look of your prompt and create repeatable configurations across different systems effortlessly.
 
@@ -9,17 +9,13 @@ Manage functions, completions, bindings, and snippets from the command line. Ext
 - Zero configuration out of the box.
 - Oh My Fish! plugin support.
 
-> #### 💁 [Looking for plugins?](https://git.io/awesome.fish)
+> #### 👋 [Upgrading from Fisher `3.x` or older?](https://github.com/jorgebucaran/fisher/issues/652)
 
 ## Installation
 
 ```console
 curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 ```
-
-> #### ⚠️ [Fish ≥ 3.0 required](https://fishshell.com/docs/current/relnotes.html#fish-3-0-0-released-december-28-2018)
-
-> #### 👋 [Upgrading from Fisher 3.x or 2.x?](https://github.com/jorgebucaran/fisher/issues/652)
 
 ## Quickstart
 
@@ -151,6 +147,10 @@ function _ponyo_uninstall --on-event ponyo_uninstall
     # Erase "private" functions, variables, bindings, and other uninstall logic.
 end
 ```
+
+## Acknowledgments
+
+Fisher started out in 2016 by [@jorgebucaran](https://github.com/jorgebucaran) as a shell configuration manager for Fish. We had a lot of help along the way. [Oh My Fish](https://github.com/oh-my-fish/oh-my-fish) laid the groundwork as the first popular Fish framework. [@jethrokuan](https://github.com/jethrokuan) was particularly helpful during the first years. [@PatrickF1](https://github.com/PatrickF1)'s candid feedback has been invaluable time and again. Bootstrapping Fisher was originally [@IlanCosman](https://github.com/IlanCosman)'s idea. Thank you to all our contributors! <3
 
 ## License
 
