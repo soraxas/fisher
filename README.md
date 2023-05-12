@@ -1,61 +1,63 @@
 # Fisher
 
-> A plugin manager for [Fish](https://fishshell.com)—the friendly interactive shell. [Looking for plugins?](https://git.io/awesome.fish)
+> A plugin manager for [Fish](https://fishshell.com)—your friendly interactive shell. [Snag fresh plugins!](https://git.io/awesome.fish)
 
-Manage functions, completions, bindings, and snippets from the command line. Extend your shell capabilities, change the look of your prompt and create repeatable configurations across different systems effortlessly.
+Take control of functions, completions, bindings, and snippets from the command line. Unleash your shell's true potential, perfect your prompt, and craft repeatable configurations across different systems effortlessly. Fisher's zero impact on shell startup keeps your shell zippy and responsive. No gimmicks, just smooth sailing!
 
-- 100% _pure_-Fish—easy to contribute to or modify.
-- Blazing fast concurrent plugin downloads.
-- Zero configuration out of the box.
-- Oh My Fish! plugin support.
+- Fisher is 100% pure-Fish, making it easy to contribute or modify
+- Scorching fast concurrent plugin downloads that'll make you question reality
+- Zero configuration needed—we're not kidding!
+- Oh My Fish! plugins supported too
 
-> #### 👋 [Upgrading from Fisher `3.x` or older?](https://github.com/jorgebucaran/fisher/issues/652)
+> #### ☝️ [Upgrading from Fisher `3.x` or older? Strap in and read this!](https://github.com/jorgebucaran/fisher/issues/652)
 
 ## Installation
 
 ```console
-curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 ```
 
 ## Quickstart
 
-You can install, update, and remove plugins interactively with Fisher, taking advantage of Fish [tab completion](https://fishshell.com/docs/current/index.html#completion) and rich syntax highlighting.
+Fisher lets you install, update, and remove plugins like a boss. Revel in Fish's [tab completion](https://fishshell.com/docs/current/index.html#completion) and rich syntax highlighting while you're at it.
 
 ### Installing plugins
 
-Install plugins using the `install` command followed by the path to the repository on GitHub.
+To install plugins, use the `install` command and point it to the GitHub repository.
 
 ```console
-fisher install ilancosman/tide
+fisher install jorgebucaran/nvm.fish
 ```
 
-To get a specific version of a plugin add an `@` symbol after the plugin name followed by a tag, branch, or [commit](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefcommit-ishacommit-ishalsocommittish).
+> Wanna install from GitLab? No problemo—just prepend `gitlab.com/` to the plugin path.
+
+You can also snag a specific version of a plugin by adding an `@` symbol after the plugin name, followed by a tag, branch, or [commit](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefcommit-ishacommit-ishalsocommittish).
 
 ```console
-fisher install jorgebucaran/nvm.fish@2.1.0
+fisher install IlanCosman/tide@v5
 ```
 
-You can install plugins from a local directory too.
+And hey, you can install plugins from a local directory too!
 
 ```console
 fisher install ~/path/to/plugin
 ```
 
-> Fisher expands plugins into your Fish configuration directory by default, overwriting existing files. If you wish to change this behavior, set `$fisher_path` to your preferred location and put it in your function path ([#640](https://github.com/jorgebucaran/fisher/issues/640)).
+> Heads up! Fisher expands plugins into your Fish configuration directory by default, overwriting existing files. If that's not your jam, set `$fisher_path` to your preferred location and put it in your function path ([#640](https://github.com/jorgebucaran/fisher/issues/640)).
 
 ### Listing plugins
 
-List all the plugins that are currently installed using the `list` command.
+Use the `list` command to see all your shiny installed plugins.
 
 ```console
 $ fisher list
 jorgebucaran/fisher
-ilancosman/tide
-jorgebucaran/nvm.fish@2.1.0
+ilancosman/tide@v5
+jorgebucaran/nvm.fish
 /home/jb/path/to/plugin
 ```
 
-The `list` command also accepts a regular expression to filter the output.
+The `list` command also plays nice with regular expressions for filtering the output.
 
 ```console
 $ fisher list \^/
@@ -64,23 +66,23 @@ $ fisher list \^/
 
 ### Updating plugins
 
-The `update` command updates one or more plugins to their latest version.
+`update` command to the rescue! It updates one or more plugins to their latest and greatest version.
 
 ```console
 fisher update jorgebucaran/fisher
 ```
 
-> Use just `fisher update` to update everything.
+> Just type `fisher update` to update everything in one fell swoop.
 
 ### Removing plugins
 
-Remove installed plugins using the `remove` command.
+Say goodbye to installed plugins with the `remove` command.
 
 ```console
-fisher remove jorgebucaran/nvm.fish@2.1.0
+fisher remove jorgebucaran/nvm.fish
 ```
 
-You may want to remove everything, including Fisher.
+Feeling destructive? Wipe out everything, including Fisher itself.
 
 ```console
 fisher list | fisher remove
@@ -88,18 +90,18 @@ fisher list | fisher remove
 
 ## Using your `fish_plugins` file
 
-Whenever you install or remove a plugin from the command line, Fisher will write down all the installed plugins plugins to `$__fish_config_dir/fish_plugins`. Adding this file to your dotfiles or version control is the easiest way to share your configuration across different systems.
+Whenever you install or remove a plugin from the command line, Fisher jots down all the installed plugins in `$__fish_config_dir/fish_plugins`. Add this file to your dotfiles or version control to easily share your configuration across different systems.
 
-You can also edit this file and run `fisher update` to commit changes:
+You can also edit this file and run `fisher update` to commit changes like a pro:
 
 ```console
-nano $__fish_config_dir/fish_plugins
+$EDITOR $__fish_config_dir/fish_plugins
 ```
 
 ```diff
 jorgebucaran/fisher
-ilancosman/tide
-jorgebucaran/nvm.fish@2.1.0
+ilancosman/tide@v5
+jorgebucaran/nvm.fish
 + PatrickF1/fzf.fish
 - /home/jb/path/to/plugin
 ```
@@ -108,49 +110,83 @@ jorgebucaran/nvm.fish@2.1.0
 fisher update
 ```
 
-That will install **PatrickF1**/**fzf.fish**, remove /**home**/**jb**/**path**/**to**/**plugin**, and update everything else.
+This will install **PatrickF1**/**fzf.fish**, remove /**home**/**jb**/**path**/**to**/**plugin**, and update everything else.
 
 ## Creating a plugin
 
-A plugin can be any number of files in a `functions`, `conf.d`, and `completions` directory. Most plugins consist of a single function, or [configuration snippet](https://fishshell.com/docs/current/index.html#configuration-files). This is what a typical plugin looks like.
+Plugins can include any number of files in `functions`, `conf.d`, and `completions` directories. Most plugins are just a single function or a [configuration snippet](https://fishshell.com/docs/current/index.html#configuration). Behold the anatomy of a typical plugin:
 
 <pre>
-<b>ponyo</b>
+<b>flipper</b>
 ├── <b>completions</b>
-│   └── ponyo.fish
+│   └── flipper.fish
 ├── <b>conf.d</b>
-│   └── ponyo.fish
+│   └── flipper.fish
 └── <b>functions</b>
-    └── ponyo.fish
+    └── flipper.fish
 </pre>
 
-Non `.fish` files as well as directories inside those locations will be copied to `$fisher_path` under `functions`, `conf.d`, or `completions` respectively.
+Non `.fish` files and directories inside these locations will be copied to `$fisher_path` under `functions`, `conf.d`, or `completions` respectively.
 
 ### Event system
 
-Plugins are notified as they are being installed, updated, or removed via Fish [events](https://fishshell.com/docs/current/cmds/emit.html).
+Fish [events](https://fishshell.com/docs/current/cmds/emit.html) notify plugins when they're being installed, updated, or removed.
 
-> `--on-event` functions must already be loaded when their event is emitted. Thus, you should put your event handlers in the `conf.d` directory.
+> Keep in mind, `--on-event` functions must be loaded when their event is emitted. So, place your event handlers in the `conf.d` directory.
 
 ```fish
-# Defined in ponyo/conf.d/ponyo.fish
+# Defined in flipper/conf.d/flipper.fish
 
-function _ponyo_install --on-event ponyo_install
+function _flipper_install --on-event flipper_install
     # Set universal variables, create bindings, and other initialization logic.
 end
 
-function _ponyo_update --on-event ponyo_update
+function _flipper_update --on-event flipper_update
     # Migrate resources, print warnings, and other update logic.
 end
 
-function _ponyo_uninstall --on-event ponyo_uninstall
+function _flipper_uninstall --on-event flipper_uninstall
     # Erase "private" functions, variables, bindings, and other uninstall logic.
 end
 ```
 
+## Creating a theme
+
+A theme is like any other Fish plugin, but with a `.theme` file in the `themes` directory. Themes were introduced in [Fish `3.4`](https://github.com/fish-shell/fish-shell/releases/tag/3.4.0) and work with the `fish_config` builtin. A theme can also have files in `functions`, `conf.d`, or `completions` if necessary. Check out what a typical theme plugin looks like:
+
+<pre>
+<b>gills</b>
+├── <b>conf.d</b>
+│   └── gills.fish
+└── <b>themes</b>
+    └── gills.theme
+</pre>
+
+### Using `$fisher_path` with themes
+
+If you customize `$fisher_path` to use a directory other than `$__fish_config_dir`, your themes won't be available via `fish_config`. That's because Fish expects your themes to be in `$__fish_config_dir/themes`, not `$fisher_path/themes`. This isn't configurable in Fish yet, but there's [a request to add that feature](https://github.com/fish-shell/fish-shell/issues/9456).
+
+Fear not! You can easily solve this by symlinking Fisher's `themes` directory into your Fish config. First, backup any existing themes directory.
+
+```console
+mv $__fish_config_dir/themes $__fish_config_dir/themes.bak
+```
+
+Next, create a symlink for Fisher's themes directory.
+
+```console
+ln -s $fisher_path/themes $__fish_config_dir/themes
+```
+
+Want to use theme plugins and maintain your own local themes? You can do that too ([#708](https://github.com/jorgebucaran/fisher/issues/708)).
+
+## Discoverability
+
+While Fisher doesn't rely on a central plugin repository, discovering new plugins doesn't have to feel like navigating uncharted waters. To boost your plugin's visibility and make it easier for users to find, [add relevant topics to your repository](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/classifying-your-repository-with-topics#adding-topics-to-your-repository) using [`fish-plugin`](https://github.com/topics/fish-plugin). By doing so, you're not only contributing to the Fisher community but also enabling users to explore new plugins and enhance their Fish shell experience. Don't let plugin discovery be a fishy business, tag your plugins today!
+
 ## Acknowledgments
 
-Fisher started out in 2016 by [@jorgebucaran](https://github.com/jorgebucaran) as a shell configuration manager for Fish. We had a lot of help along the way. [Oh My Fish](https://github.com/oh-my-fish/oh-my-fish) laid the groundwork as the first popular Fish framework. [@jethrokuan](https://github.com/jethrokuan) was particularly helpful during the first years. [@PatrickF1](https://github.com/PatrickF1)'s candid feedback has been invaluable time and again. Bootstrapping Fisher was originally [@IlanCosman](https://github.com/IlanCosman)'s idea. Thank you to all our contributors! <3
+Fisher started its journey in 2016 by [@jorgebucaran](https://github.com/jorgebucaran) as a shell configuration manager for Fish. Along the way, many helped shape it into what it is today. [Oh My Fish](https://github.com/oh-my-fish/oh-my-fish) paved the way as the first popular Fish framework. [@jethrokuan](https://github.com/jethrokuan) provided crucial support during the early years. [@PatrickF1](https://github.com/PatrickF1)'s candid feedback proved invaluable time and again. Bootstrapping Fisher was originally [@IlanCosman](https://github.com/IlanCosman)'s brilliant idea. Thank you to all our contributors! <3
 
 ## License
 
