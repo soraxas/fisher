@@ -19,7 +19,7 @@ function fisher --argument-names cmd --description "A plugin manager for Fish"
             echo "       \$fisher_path  Plugin installation path. Default: $__fish_config_dir" | string replace --regex -- $HOME \~
         case ls list
             string match --entire --regex -- "$argv[2]" $_fisher_plugins
-        case install update remove
+        case install update remove uninstall
             isatty || read --local --null --array stdin && set --append argv $stdin
 
             set --local install_plugins
@@ -48,7 +48,7 @@ function fisher --argument-names cmd --description "A plugin manager for Fish"
             if set --query argv[2]
                 for plugin in $new_plugins
                     if contains -- "$plugin" $old_plugins
-                        test "$cmd" = remove &&
+                        begin; test "$cmd" = remove; or test "$cmd" = uninstall; end &&
                             set --append remove_plugins $plugin ||
                             set --append update_plugins $plugin
                     else if test "$cmd" = install
@@ -204,7 +204,7 @@ function fisher --argument-names cmd --description "A plugin manager for Fish"
                 # inverse match active plugins against the (comment stripped) $new_content
                 set --append -- new_content (string match --regex --invert -- '^(?:'(
                     string join -- '|' (string match --regex -- '^[^#\s]+' $new_content))')$' $_fisher_plugins)
-                
+
                 printf '%s\n' $new_content >$fish_plugins
             else
                 set --erase _fisher_plugins
