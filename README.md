@@ -14,7 +14,7 @@ Take control of functions, completions, bindings, and snippets from the command 
 ## Installation
 
 ```console
-curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+curl -sL https://raw.githubusercontent.com/soraxas/fisher/main/functions/fisher.fish | source && fisher install soraxas/fisher
 ```
 
 ## Quickstart
